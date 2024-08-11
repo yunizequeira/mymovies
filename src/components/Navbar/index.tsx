@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Search from "../Search";
 import Image from "next/image";
+import { Suspense } from 'react'
 
 const Navbar = () => {
   return (
@@ -19,7 +20,9 @@ const Navbar = () => {
         </div>
        
         <div className="col-span-4 w-full flex justify-center h-full items-center">
+        <Suspense>
           <Search />
+        </Suspense>
         </div>
         
         <div className="flex space-x-5 col-span-2 justify-center h-full items-center">

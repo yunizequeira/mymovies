@@ -1,7 +1,7 @@
 'use client'
 import { usePathname,useSearchParams,useRouter } from "next/navigation";
-import { useDebouncedCallback } from 'use-debounce';
-import { useEffect, useState } from "react";
+import {useState } from "react";
+import { Suspense } from "react";
 
 const WAIT_BETWEEN_CHANGE = 300
 const Search = () => {
@@ -21,6 +21,7 @@ const Search = () => {
     }
   return (
     <div className="flex items-center justify-center px-3 rounded-md  w-full">
+    <Suspense fallback={<div>Loading...</div>}>
     <form className="w-full flex justify-center items-center " onSubmit={()=>SearchTerm(term)}>
       <input
         type="search"
@@ -35,6 +36,7 @@ const Search = () => {
         <i>search</i>
       </button>
     </form>
+    </Suspense>
   </div>
   )
 }

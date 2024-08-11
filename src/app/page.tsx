@@ -1,6 +1,5 @@
 import Banner from "@/components/Baner";
 import NowPlaying from "@/components/NowPlaying";
-import Search from "@/components/Search";
 import TopRated from "@/components/TopRated";
 import Trading from "@/components/Trending";
 import Uncoming from "@/components/Uncoming";
