@@ -92,7 +92,7 @@ export async function fetchMoviesByPersonId(id: number) {
 
 export async function fetchAllbySearch(search:string) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=944a8b04756c24bc60299b22c3747426&include_adult=false&language=en-US&page=1`
+    `https://api.themoviedb.org/3/search/multi?query=${search}&api_key=944a8b04756c24bc60299b22c3747426&include_adult=false&language=en-US&page=1`
   );
   const data = await response.json();
   return data.results;

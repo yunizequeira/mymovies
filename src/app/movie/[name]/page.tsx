@@ -40,7 +40,8 @@ const MovieById = async ({ params, searchParams }: Props) => {
     `https://api.themoviedb.org/3/movie/${id}/videos?api_key=944a8b04756c24bc60299b22c3747426&language=en-US`
   );
   const { results } = await req.json();
-  const video = results.length > 0 && results[0].key ? results[0].key : "";
+
+  const video = results && results.length > 0 && results[0].key ? results[0].key : "";
   return (
     <div
       className={`relative ${
@@ -91,7 +92,7 @@ const MovieById = async ({ params, searchParams }: Props) => {
         <div>
           <div className="lg:hidden block w-full">
             <InfoMovie
-              average={data.vote_average}
+              average={data.vote_average ? data.vote_average : 0}
               genres={data.genres}
               overview={data.overview}
               tagline={data.tagline}

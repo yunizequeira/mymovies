@@ -1,6 +1,5 @@
-import AllMovies from "@/components/Allmovies";
-import Card from "@/components/Card";
-import { fetchAllbySearch } from "@/libs/Fetchers";
+import Grid from "@/components/Grid";
+import { fetchAllbySearch, fetchAllResults } from "@/libs/Fetchers";
 
 interface Props {
   searchParams?: {
@@ -11,32 +10,20 @@ interface Props {
 const MoviesPage = async ({ searchParams }: Props) => {
   const search = searchParams?.search;
   console.log(search);
+  const allResults = await fetchAllResults();
   if (search) {
     const movies = await fetchAllbySearch(search);
     console.log(movies);
     return movies.length > 0 ? (
-      <div className="min-h-screen p-5 container mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {movies.map((data: any) => (
-            <Card
-              key={data.id}
-              title={data.title ? data.title : data.name}
-              image={data.poster_path}
-              average={data.vote_average}
-              id={data.id}
-            />
-          ))}
-        </div>
-      </div>
-    ): (
+      <Grid content={movies} />
+    ) : (
       <div className="min-h-screen p-5 container mx-auto">
         <h3 className="text-center text-semibold text-4xl">No movies found</h3>
-      </div>)
+      </div>
+    );
   }
   return (
-    <div className="min-h-screen p-5 container mx-auto">
-      <AllMovies />
-    </div>
+    <Grid content={allResults} />
   );
 };
 
