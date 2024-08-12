@@ -21,7 +21,9 @@ const Navbar = () => {
         </div>
 
         <div className="col-span-4 w-full flex justify-center h-full items-center">
+          <Suspense fallback={<div>Loading...</div>}>
           <Search />
+          </Suspense>
         </div>
 
         <div className="lg:flex space-x-5 col-span-2 justify-center h-full items-center hidden ">
