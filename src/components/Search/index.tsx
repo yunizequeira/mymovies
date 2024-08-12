@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams, useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, Suspense } from 'react';
 
 const WAIT_BETWEEN_CHANGE = 300;
 const Search = () => {
@@ -27,6 +27,7 @@ const Search = () => {
   };
   return (
     <div className="flex items-center justify-center px-3 rounded-md  w-full">
+        <Suspense>
       <form
         className="w-full flex justify-center items-center bg-white rounded-lg shadow-md "
         onSubmit={SearchTerm}
@@ -47,6 +48,7 @@ const Search = () => {
           <i>search</i>
         </button>
       </form>
+      </Suspense>
     </div>
   );
 };
