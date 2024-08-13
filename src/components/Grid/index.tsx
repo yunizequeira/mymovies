@@ -20,6 +20,15 @@ const Grid = ({ content }: Props) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {content.map((data) => (
           <>
+            {!data.media_type && (
+              <Card
+                key={data.id}
+                title={data.title || data.name}
+                image={data.poster_path || ""}
+                average={data.vote_average || 0}
+                id={data.id}
+              />
+            )}
             {data.poster_path && data.media_type === "movie" && (
               <Card
                 key={data.id}
@@ -30,7 +39,7 @@ const Grid = ({ content }: Props) => {
               />
             )}
             {data.media_type === "person" && data.profile_path && (
-              <PersonCard data={data} />
+              <PersonCard data={data} key={data.id} />
             )}
           </>
         ))}

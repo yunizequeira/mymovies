@@ -10,7 +10,7 @@ export async function fetchTrending() {
   return results;
 }
 
-// devuelve todos los resultados de las populares movies en las 10 primeras paginas en un array 
+// devuelve todos los resultados de las populares movies en las 10 primeras paginas en un array
 export async function fetchAllResults() {
   let results: ICard[] = [];
   let currentPage = 1;
@@ -32,7 +32,6 @@ export async function fetchAllResults() {
   return results;
 }
 
-
 export async function fetchMovieById(id: number) {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=944a8b04756c24bc60299b22c3747426&language=en-US`
@@ -40,7 +39,6 @@ export async function fetchMovieById(id: number) {
   const data = await response.json();
   return data;
 }
-
 
 export async function fetchMovieByGenre(id: number) {
   const response = await fetch(
@@ -90,21 +88,26 @@ export async function fetchMoviesByPersonId(id: number) {
   return data.cast;
 }
 
-export async function fetchAllbySearch(search:string) {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/search/multi?query=${search}&api_key=944a8b04756c24bc60299b22c3747426&include_adult=false&language=en-US&page=1`
-  );
-  const data = await response.json();
-  return data.results;
+export async function fetchAllbySearch(search: string) {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/multi?query=${search}&api_key=944a8b04756c24bc60299b22c3747426&include_adult=false&language=en-US&page=1`
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {}
 }
 
-
 export async function fetchAllbyGenre(id: number) {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}&api_key=944a8b04756c24bc60299b22c3747426`
-  );
-  const data = await response.json();
-  return data.results;
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}&api_key=944a8b04756c24bc60299b22c3747426`
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    throw new Error("Data not found");
+  }
 }
 
 export async function fetchNowPlaying() {
@@ -126,6 +129,15 @@ export async function fetchToRated() {
 export async function fetchUncoming() {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=944a8b04756c24bc60299b22c3747426`
+  );
+  const data = await response.json();
+  return data.results;
+}
+
+export async function fetchPopularMovies() {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=944a8b04756c24bc60299b22c3747426&language=en-US&page=1&sort_by=popularity.desc`,
+    { cache: "no-store" }
   );
   const data = await response.json();
   return data.results;
