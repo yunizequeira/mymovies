@@ -142,3 +142,30 @@ export async function fetchPopularMovies() {
   const data = await response.json();
   return data.results;
 }
+
+
+export async function fetchOnAirSeries() {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/tv/on_the_air?api_key=944a8b04756c24bc60299b22c3747426&language=en-US&page=1`,
+    { cache: "no-store" }
+  );
+  const data = await response.json();
+  return data.results;
+}
+export async function fetchPopularSeries() {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/tv/popular?api_key=944a8b04756c24bc60299b22c3747426&language=en-US&page=1`,
+    { cache: "no-store" }
+  );
+  const data = await response.json();
+  return data.results;
+}
+
+export async function fetchTopRatedSeries() {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/tv/top_rated?api_key=944a8b04756c24bc60299b22c3747426&language=en-US&page=1`,
+    { cache: "no-store" }
+  );
+  const data = await response.json();
+  return data.results;
+}

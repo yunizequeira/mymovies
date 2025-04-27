@@ -1,6 +1,11 @@
 import Grid from "@/components/Grid";
 import { fetchUncoming } from '@/libs/Fetchers';
-import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata =  {
+    title: "Uncoming Movies",
+  
+};
 
 const UncomingMovies = async () => {
   const data = await fetchUncoming();

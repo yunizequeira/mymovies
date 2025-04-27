@@ -1,29 +1,34 @@
-import Banner from "@/components/Baner";
-import NowPlaying from "@/components/NowPlaying";
-import TopRated from "@/components/TopRated";
-import Trading from "@/components/Trending";
-import Uncoming from "@/components/Uncoming";
-import { fetchAllResults } from "@/libs/Fetchers";
+import Grid from "@/components/Grid";
+import { fetchAllbySearch, fetchAllResults } from "@/libs/Fetchers";
+import type { Metadata } from "next";
 
-export default async function Home() {
-  const data = await fetchAllResults();
-  const movies = data.slice(0, 5);
-  return (
-    <main className="min-h-screen pb-10">
-     
-      <Banner data={movies} />
-      <div className="container mx-auto px-2 py-10">
-        <Uncoming/>
-      </div>
-      <div className="container mx-auto px-2 py-10">
-        <NowPlaying />
-      </div>
-      <div className="container mx-auto px-2 py-10">
-        <TopRated />
-      </div>
-      <div className="container mx-auto px-2 py-10">
-        <Trading />
-      </div>
-    </main>
-  );
+export const metadata: Metadata =  {
+    title: "Movies",
+  
+};
+
+interface Props {
+  searchParams?: {
+    search?: string;
+  };
 }
+
+const MoviesPage = async ({ searchParams }: Props) => {
+  const search = searchParams?.search;
+  const allResults = await fetchAllResults();
+  if (search) {
+    const movies = await fetchAllbySearch(search);
+    return movies.length > 0 ? (
+      <Grid content={movies} />
+    ) : (
+      <div className="min-h-screen p-5 container mx-auto">
+        <h3 className="text-center text-semibold text-4xl">No movies found</h3>
+      </div>
+    );
+  }
+  return (
+    <Grid content={allResults} />
+  );
+};
+
+export default MoviesPage;

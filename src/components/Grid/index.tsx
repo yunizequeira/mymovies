@@ -19,13 +19,13 @@ const Grid = ({ content }: Props) => {
     <div className="min-h-screen p-5 container mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {content.map((data) => (
-          <>
+          <div key={data.id}>
             {!data.media_type && (
               <Card
                 key={data.id}
                 title={data.title || data.name}
                 image={data.poster_path || ""}
-                average={data.vote_average || 0}
+                average={data.vote_average ? data.vote_average : 0}
                 id={data.id}
               />
             )}
@@ -41,7 +41,7 @@ const Grid = ({ content }: Props) => {
             {data.media_type === "person" && data.profile_path && (
               <PersonCard data={data} key={data.id} />
             )}
-          </>
+          </div>
         ))}
       </div>
     </div>

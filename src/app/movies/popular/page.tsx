@@ -1,7 +1,11 @@
 import Grid from "@/components/Grid";
 import { fetchTrending } from "@/libs/Fetchers";
-import React from "react";
+import type { Metadata } from "next";
 
+export const metadata: Metadata =  {
+    title: "Popular Movies",
+  
+};
 const PolpulareMovies = async () => {
   const data = await fetchTrending();
   if (data.length > 0) {

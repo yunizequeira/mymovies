@@ -1,6 +1,11 @@
 import Grid from "@/components/Grid";
 import { fetchToRated } from '@/libs/Fetchers';
-import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata =  {
+    title: "Top Rated Movies",
+  
+};
 
 const TopRatedMovies = async () => {
   const data = await fetchToRated();

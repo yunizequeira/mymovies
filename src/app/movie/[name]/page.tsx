@@ -1,10 +1,6 @@
-import AddFavorite from "@/components/AddFavorite";
-import CircularRaiting from "@/components/CircularRaiting";
 import VideoPlayer from "@/components/VideoPlayer";
-import WatchTrailer from "@/components/WatchTrailer";
 import { fetchMovieById } from "@/libs/Fetchers";
 import Image from "next/image";
-import Genres from "@/components/Genres";
 import type { Metadata } from "next";
 import InfoMovie from "@/components/InfoMovie";
 import Cast from "@/components/Cast";
@@ -34,7 +30,6 @@ const MovieById = async ({ params, searchParams }: Props) => {
   const search = searchParams.watch;
   const id = params.name.split("-")[0];
   const data = await fetchMovieById(Number(id));
-  console.log(data);
   const years = new Date(data.release_date).getFullYear();
   const req = await fetch(
     `https://api.themoviedb.org/3/movie/${id}/videos?api_key=944a8b04756c24bc60299b22c3747426&language=en-US`
@@ -42,18 +37,18 @@ const MovieById = async ({ params, searchParams }: Props) => {
   const { results } = await req.json();
 
   const video = results && results.length > 0 && results[0].key ? results[0].key : "";
+  console.log(video)
   return (
     <div
       className={`relative ${
         search ? "h-[calc(100vh-120px)] overflow-hidden" : "block"
       }`}
     >
-      {search && <VideoPlayer video={video} />}
 
       <div>
         <div className="w-full flex justify-end relative">
           <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-gradient-to-r from-gray-950 from-20% via-50% lg:via-gray-950/60 via-gray-950/20 lg:to-gray-950/60 to-transparent p-2 ">
-            <div className="container mx-auto h-full max-h-[600px] grid grid-cols-3">
+            <div className="container mx-auto h-full max-h-[600px] grid grid-cols-3 overflow-y-scroll">
               <figure className="w-full h-full flex justify-center items-center overflow-hidden lg:p-10 p-5">
                 {data.poster_path ? <Image
                   src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}

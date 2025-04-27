@@ -11,7 +11,7 @@ interface Props {
 }
 const Card = ({ title, image, average, id }: Props) => {
   return (
-    <Link href={`/movie/${id}-${title}`} className="flex-none rounded-md">
+    <Link href={`/movie/${id}-${title}`} className="flex-none rounded-md  ">
       <div className="h-96 relative">
         {image !== null ? (
           <Image
@@ -19,11 +19,11 @@ const Card = ({ title, image, average, id }: Props) => {
             width={500}
             height={500}
             alt={title|| "no title"}
-            className="rounded-md w-full h-full "
+            className="rounded-md w-full h-full border-4 border-transparent hover:border-blue-800 transition-colors duration-300 shadow"
             priority={false}
           />
         ) : (
-          <div className="h-96 w-full flex flex-col justify-center items-center bg-black relative">
+          <div className="h-96 w-full flex flex-col justify-center items-center bg-black relative ">
             <IconMovie className="w-40 h-96" />
             <p className="text-xl">No Image</p>
           </div>

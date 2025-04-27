@@ -14,7 +14,7 @@ const PersonCard = ({ data }: Props) => {
   return data.profile_path !== null || data.profile_path !== undefined ? (
     <Link
       href={`/actor/${data.id}-${data.name}`}
-      className="flex-none rounded-md"
+      className="flex-none rounded-md hover:border-blue-800"
     >
       <div className="h-96 relative">
         <Image
