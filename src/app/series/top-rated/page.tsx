@@ -1,11 +1,11 @@
-import Grid from '@/components/Grid';
+import SeriesGrid from '@/components/SeriesGrid';
 import { fetchOnAirSeries, fetchTopRatedSeries } from '@/libs/Fetchers';
 
 const TopRated = async() => {
     const data = await fetchTopRatedSeries();
     if (data.length > 0) {
       return(
-          <Grid content={data}/>
+          <SeriesGrid content={data}/>
       )
     } else {
       throw new Error("Data not found");

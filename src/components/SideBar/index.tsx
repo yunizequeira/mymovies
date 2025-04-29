@@ -35,7 +35,7 @@ const SideBar = () => {
       {isOpen && (
         <motion.div initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }} className="fixed top-20 left-0 w-full h-screen bg-slate-900 p-10 backdrop-blur-lg rounded-b-lg text-lg overflow-y-scroll">
+        transition={{ duration: 0.3, ease: "easeOut" }} className="fixed top-20 left-0 w-full h-screen bg-slate-900 p-10 backdrop-blur-lg rounded-b-lg text-lg overflow-y-scroll z-50">
           <ul className="flex flex-col gap-5 ">
             <li className="cursor-pointer">
               <Link

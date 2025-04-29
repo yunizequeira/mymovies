@@ -1,5 +1,5 @@
-import Card from "../Card";
 import PersonCard from "../PersonCard";
+import SeriesCard from "../SeriesCard";
 
 interface Props {
   content: {
@@ -13,14 +13,14 @@ interface Props {
   }[];
 }
 
-const Grid = ({ content }: Props) => {
+const SeriesGrid = ({ content }: Props) => {
   return (
     <div className="min-h-screen p-5 container mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {content.map((data) => (
           <div key={data.id}>
             {!data.media_type && (
-              <Card
+              <SeriesCard
                 key={data.id}
                 title={data.title || data.name}
                 image={data.poster_path || ""}
@@ -29,7 +29,7 @@ const Grid = ({ content }: Props) => {
               />
             )}
             {data.poster_path && data.media_type === "movie" && (
-              <Card
+              <SeriesCard
                 key={data.id}
                 title={data.title || data.name}
                 image={data.poster_path || ""}
@@ -47,4 +47,4 @@ const Grid = ({ content }: Props) => {
   );
 };
 
-export default Grid;
+export default SeriesGrid;

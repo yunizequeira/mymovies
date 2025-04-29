@@ -1,4 +1,5 @@
 import { ICard } from "@/libs/Types";
+import { METHODS } from "http";
 
 // devuelve todos los resultados de las populares movies de la primera pagina
 export async function fetchTrending() {
@@ -15,11 +16,10 @@ export async function fetchAllResults() {
   let results: ICard[] = [];
   let currentPage = 1;
   let hasMore = true;
-  console.log(currentPage);
 
   while (currentPage <= 10 && hasMore) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=944a8b04756c24bc60299b22c3747426&language=en-US&page=${currentPage}&sort_by=popularity.desc`,
+      `https://api.themoviedb.org/3/movie/popular?api_key=944a8b04756c24bc60299b22c3747426&language=en-US&page=${currentPage}&sort_by=popularity.desc?total_pages=100`,
       { cache: "no-store" }
     );
     const data = await response.json();
@@ -168,4 +168,13 @@ export async function fetchTopRatedSeries() {
   );
   const data = await response.json();
   return data.results;
+}
+
+export async function fetchSeriesById(id: number) {
+  const response = await fetch(
+   `https://api.themoviedb.org/3/tv/${id}?api_key=944a8b04756c24bc60299b22c3747426&language=en-US`,
+    { cache: "no-store" }
+  );
+  const data = await response.json();
+  return data;
 }

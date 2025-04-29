@@ -1,12 +1,14 @@
+'use client'
 import Link from "next/link";
 import Search from "../Search";
-import { IconMenu3} from "@tabler/icons-react";
 import { Suspense } from "react";
 import MenuNavbar from "../Movies-Navbar";
 import SeriesNavbar from "../Series-Navbar";
 import SideBar from "../SideBar";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [show, setShow] = useState({category: "", value: false});
   return (
     <div className="px-5 shadow-md z-50 h-20 bg-slate-900/50 backdrop-blur-lg fixed top-0 left-0 right-0 ">
       <div className="grid grid-cols-2 lg:grid-cols-3 container mx-auto items-center h-full w-full">
@@ -27,11 +29,11 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex lg:flex-row space-x-5 w-full h-full items-center justify-end flex-col ">
-          <Link href={"/"} className="">
+          <Link href={"/"} className="hover:text-blue-700">
             Home
           </Link>
-          <MenuNavbar />
-          <SeriesNavbar />
+          <MenuNavbar show={show} setShow={setShow}/>
+          <SeriesNavbar show={show} setShow={setShow}/>
         </div>
       </div>
     </div>

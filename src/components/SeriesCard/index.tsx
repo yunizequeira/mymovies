@@ -9,9 +9,9 @@ interface Props {
   image: string;
   average: number;
 }
-const Card = ({ title, image, average, id }: Props) => {
+const SeriesCard = ({ title, image, average, id }: Props) => {
   return (
-    <Link href={`/movie/${id}-${title}`} className="flex-none rounded-2xl">
+    <Link href={`/series/${id}-${title}`} className="flex-none rounded-md  ">
       <div className="h-96 relative">
         {image !== null ? (
           <Image
@@ -19,7 +19,7 @@ const Card = ({ title, image, average, id }: Props) => {
             width={500}
             height={500}
             alt={title|| "no title"}
-            className="rounded-2xl w-full h-full border-4 border-transparent hover:border-blue-800 transition-colors duration-300 shadow"
+            className="rounded-md w-full h-full border-4 border-transparent hover:border-blue-800 transition-colors duration-300 shadow"
             priority={false}
           />
         ) : (
@@ -29,7 +29,7 @@ const Card = ({ title, image, average, id }: Props) => {
           </div>
         )}
         <div
-          className={`absolute top-0 right-0 p-2 rounded-tr-2xl font-semibold ${
+          className={`absolute top-0 right-0 p-2 rounded-tr-md font-semibold ${
             Number(average.toFixed(1)) * 10 < 50
               ? "bg-red-500"
               : Number(average.toFixed(1)) * 10 < 65
@@ -44,4 +44,4 @@ const Card = ({ title, image, average, id }: Props) => {
   );
 };
 
-export default Card;
+export default SeriesCard;
