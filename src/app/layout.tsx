@@ -26,6 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="google-site-verification" content="R_aklkxInue3Wj_ZiATN0L4EHGKRNzHiJXJ0h_uQPU4" />
       <body className={`${inter.className} bg-gray-950 text-white `}>
         <nav>
           <Navbar />
