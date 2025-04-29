@@ -28,7 +28,7 @@ export default function RootLayout({
         </nav>
 
         <main className="mt-20">{children}</main>
-        <footer className="fixed bottom-0 left-0 right-0 bg-gray-950 py-5 z-50">
+        <footer className="bg-gray-950 py-5">
           <div className="container mx-auto">
             <Footer />
           </div>
