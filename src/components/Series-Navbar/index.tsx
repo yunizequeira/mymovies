@@ -1,7 +1,7 @@
 'use client'
 import { IconChevronCompactUp } from "@tabler/icons-react"
 import Link from "next/link"
-import { useState } from "react"
+import {motion} from 'framer-motion'
 
 const SeriesNavbar =  ({ show, setShow }: { show: {category: string; value: boolean }; setShow: React.Dispatch<React.SetStateAction<{ category: string; value: boolean }>> })=> {
   const hanndleHover = () => {
@@ -22,7 +22,10 @@ const SeriesNavbar =  ({ show, setShow }: { show: {category: string; value: bool
     </div>
     
     {show.category === "series" && (
-      <div
+      <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1 , y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
         className={
           show
             ? "absolute top-10 -left-10 bg-gray-900 py-10 rounded-lg z-10 flex flex-col items-center gap-2 w-36 border-4 border-blue-700"
@@ -34,7 +37,7 @@ const SeriesNavbar =  ({ show, setShow }: { show: {category: string; value: bool
       <Link href={'/series/popular'} className="hover:bg-blue-700 flex-nowrap inline-block px-5 py-2 rounded" onClick={hanndleHoverLeave}>Populars </Link>
       <Link href={'/series/on-the-air'} className="hover:bg-blue-700 flex-nowrap inline-block px-5 py-2 rounded" onClick={hanndleHoverLeave}>On The Air </Link>
       <Link href={'/series/top-rated'} className="hover:bg-blue-700 flex-nowrap inline-block px-5 py-2 rounded" onClick={hanndleHoverLeave}>Top Rated </Link>
-      </div>
+      </motion.div>
     )}
   </div>
   )

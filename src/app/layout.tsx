@@ -11,8 +11,12 @@ const inter = Roboto({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mymovies-omega.vercel.app"),
   title: "My movies app",
   description: "This is the clon of TMDB",
+  openGraph: {
+    images: '/opengraph-image.jpg',
+  },
 };
 
 export default function RootLayout({

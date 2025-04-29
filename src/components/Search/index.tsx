@@ -20,13 +20,13 @@ const Search = () => {
   const SearchTerm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (term !== "") {
-      router.push(`/movies?search=${term}`);
+      router.push(`/search?search=${term}`);
     } else {
-      router.push(`/movies`);
+      router.push(`/`);
     }
   };
   return (
-    <div className="flex items-center justify-center px-3 rounded-md  w-full">
+    <div className="flex items-center justify-center lg:px-3 rounded-md  w-full">
         <Suspense>
       <form
         className="w-full flex justify-center items-center bg-white rounded-lg shadow-md "
